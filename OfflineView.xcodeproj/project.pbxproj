@@ -87,6 +87,7 @@
 		4E8180BA155CC19C00FAF13A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8180B9155CC19C00FAF13A /* MobileCoreServices.framework */; };
 		4E8180BB155CC1D600FAF13A /* TweetStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8180B4155CC12F00FAF13A /* TweetStatus.m */; };
 		4E8180BC155CC1D600FAF13A /* TweetUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8180B7155CC14600FAF13A /* TweetUser.m */; };
+		4E887D3B155D190D0036081F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E887D3A155D190D0036081F /* Icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +230,7 @@
 		4E8180B6155CC14600FAF13A /* TweetUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetUser.h; sourceTree = "<group>"; };
 		4E8180B7155CC14600FAF13A /* TweetUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetUser.m; sourceTree = "<group>"; };
 		4E8180B9155CC19C00FAF13A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		4E887D3A155D190D0036081F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,6 +416,7 @@
 		4E81802F155C948800FAF13A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E887D3A155D190D0036081F /* Icon.png */,
 				4E818030155C949400FAF13A /* start.png */,
 			);
 			name = Resources;
@@ -602,6 +605,7 @@
 			files = (
 				4E817FDE155C92E800FAF13A /* InfoPlist.strings in Resources */,
 				4E091CFB155CC59300AE7444 /* Storyboard.storyboard in Resources */,
+				4E887D3B155D190D0036081F /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

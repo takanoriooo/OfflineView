@@ -18,8 +18,8 @@
 @implementation TwitterOAuthLogic
 
 // Twitter登録情報。Twitter Developerの登録情報と同期している
-#define CONSUMER_KEY    @""
-#define CONSUMER_SECRET @""
+#define CONSUMER_KEY    @"oTDs1bHai7SNoQa2fsr6g"
+#define CONSUMER_SECRET @"Ay0stDMaEn7I5JiSM2eVKR4rcV1oeIkc05rcQlJGbcQ"
 
 // OAuth認証用の情報
 #define REQUEST_TOKEN_URL @"https://api.twitter.com/oauth/request_token"

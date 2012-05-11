@@ -42,7 +42,6 @@
     if(oauthViewController) {
         TweetViewController *tweetViewController = [self.storyboard instantiateViewControllerWithIdentifier:IDENTIFIER_TWEET_VIEW];
         [oauthViewController presentModalViewController:tweetViewController animated:YES];
-        
     }
     // 認証用ViewControllerが存在しない場合（Keyチェーンに認証情報があった場合）は
     // segueを使って遷移
