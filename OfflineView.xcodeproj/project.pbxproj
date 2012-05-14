@@ -26,7 +26,6 @@
 		4E818006155C92E800FAF13A /* OfflineViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E818005155C92E800FAF13A /* OfflineViewTests.m */; };
 		4E818029155C945400FAF13A /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E818028155C945400FAF13A /* HeaderView.m */; };
 		4E81802E155C948200FAF13A /* PostTweetLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81802D155C948200FAF13A /* PostTweetLogic.m */; };
-		4E818031155C949400FAF13A /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E818030155C949400FAF13A /* start.png */; };
 		4E818034155C94A000FAF13A /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E818033155C94A000FAF13A /* StartViewController.m */; };
 		4E818039155C94B700FAF13A /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E818038155C94B700FAF13A /* TweetViewController.m */; };
 		4E818040155C94C100FAF13A /* TwitterOAuthLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81803B155C94C100FAF13A /* TwitterOAuthLogic.m */; };
@@ -88,6 +87,7 @@
 		4E8180BB155CC1D600FAF13A /* TweetStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8180B4155CC12F00FAF13A /* TweetStatus.m */; };
 		4E8180BC155CC1D600FAF13A /* TweetUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8180B7155CC14600FAF13A /* TweetUser.m */; };
 		4E887D3B155D190D0036081F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E887D3A155D190D0036081F /* Icon.png */; };
+		4E887D3F1560B64D0036081F /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E887D3E1560B64D0036081F /* start.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,7 +171,6 @@
 		4E818028155C945400FAF13A /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		4E81802C155C948200FAF13A /* PostTweetLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTweetLogic.h; sourceTree = "<group>"; };
 		4E81802D155C948200FAF13A /* PostTweetLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTweetLogic.m; sourceTree = "<group>"; };
-		4E818030155C949400FAF13A /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = start.png; path = OfflineView/start.png; sourceTree = "<group>"; };
 		4E818032155C94A000FAF13A /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		4E818033155C94A000FAF13A /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		4E818037155C94B700FAF13A /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
@@ -231,6 +230,7 @@
 		4E8180B7155CC14600FAF13A /* TweetUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetUser.m; sourceTree = "<group>"; };
 		4E8180B9155CC19C00FAF13A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4E887D3A155D190D0036081F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4E887D3E1560B64D0036081F /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,8 +416,8 @@
 		4E81802F155C948800FAF13A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E887D3E1560B64D0036081F /* start.png */,
 				4E887D3A155D190D0036081F /* Icon.png */,
-				4E818030155C949400FAF13A /* start.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -606,6 +606,7 @@
 				4E817FDE155C92E800FAF13A /* InfoPlist.strings in Resources */,
 				4E091CFB155CC59300AE7444 /* Storyboard.storyboard in Resources */,
 				4E887D3B155D190D0036081F /* Icon.png in Resources */,
+				4E887D3F1560B64D0036081F /* start.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,7 +615,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E818003155C92E800FAF13A /* InfoPlist.strings in Resources */,
-				4E818031155C949400FAF13A /* start.png in Resources */,
 				4E81807B155C95CC00FAF13A /* GTMOAuthViewTouch.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -186,7 +186,7 @@ SPDYTwitterの特徴
         </scene>
     </scenes>
     <resources>
-        <image name="start.png" width="131" height="110"/>
+        <image name="start.png" width="16" height="16"/>
     </resources>
     <classes>
         <class className="HeaderView" superclassName="UIView">
