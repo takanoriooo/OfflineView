@@ -26,7 +26,8 @@ iPhoneアプリ開発はしっかりやろうと思うと覚えることが相�
 Xcodeには色々と便利な機能もありますが、それは追々説明出来ればと思っています。
 
 * iOSアプリの紹介  
-  Xcodeで実行出来るアプリをいくつか集めてきたのでご紹介します
+  Xcodeで実行出来るアプリをいくつか集めてきたのでご紹介します  
+  [Molecules](http://www.sunsetlakesoftware.com/molecules) [FuelView](http://cocoawithlove.com/2011/06/process-of-writing-ios-application.html)
 * Twitterクライアントの紹介  
   本講座の目標である、OfflineViewについて解説します。講座を完走すればOfflineViewと同程度のアプリは作れるようになる* * はずです
 * OfflineViewの主な機能
