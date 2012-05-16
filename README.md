@@ -27,7 +27,8 @@ Xcodeには色々と便利な機能もありますが、それは必要になる
 
 * iOSアプリの紹介  
   Xcodeで実行出来るアプリをいくつか紹介します。ここに挙げたアプリはソースコードが公開されているので、Xcodeから直接起動することが出来ます。  
-  [Molecules](http://www.sunsetlakesoftware.com/molecules) [FuelView](http://cocoawithlove.com/2011/06/process-of-writing-ios-application.html)
+  [Molecules](http://www.sunsetlakesoftware.com/molecules) [FuelView](http://cocoawithlove.com/2011/06/process-of-writing-ios-application.html)  
+  上記については、本日の講座の最後に各自のMacで起動してみます。
 * Twitterクライアントの紹介  
   講座をやるにあたって、目標となるアプリがあった方がモチベーションが上がると思いますので、Twitterクライアントアプリ（OfflineView）を一つ作成しました。OfflineViewを自作出来るようになることが本講座の目標です。
   ここではOfflineViewの機能概要を説明します。
@@ -47,14 +48,14 @@ Xcodeには色々と便利な機能もありますが、それは必要になる
   作成したアプリにボタン・ラベルを追加します  
   MainStoryboard.storyboard -> First View Controller -> View と選択し、Labelを画面にDragします。Textを書き換えて、好きな文言を入力します  
   アプリを再実行します
-  * Segueを使った画面遷移
-
-
+* サンプルアプリの実行  
+  最初に紹介した二つのデモアプリを各自のMacで動かしてみます。アプリはAirMac上に配置しているので、デスクトップに配置して下さい
 
 ### 第2回：HelloWorldアプリケーションの作成
 * Xcodeを使ってサンプルアプリを作成（続き）（ハンズオン）
+  * Segueを使った画面遷移
   * 画面遷移アニメーション
-  * コントローラのプロパティ設定（背景色等）
+  * コントローラのプロパティ設定（背景色変更）
 * HelloWorldプロジェクトの作成（ハンズオン）
   * 完成版を見せる
   * IBOutlet／IBAction
