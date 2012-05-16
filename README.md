@@ -22,14 +22,14 @@ iPhoneアプリ開発はしっかりやろうと思うと覚えることが相�
 各講義の題名と講義内容のダイジェストです。
 
 ### 第一回：本講座の目的
-初回と言う事でXcodeの使い方から解説します。本講座はiOSアプリを作るために必要な知識をピンポイントで解説していくスタンスを取るつもりです。Xcodeについても網羅的な説明は避けて、アプリ作成に必要となるところに絞って解説を行います。  
+初回と言う事でXcodeの使い方から解説します。本講座はiOSアプリを作るために必要な知識をピンポイントで解説していきますので、Xcodeについても網羅的な説明は避け、アプリ作成に必要となるところに絞って解説を行います。  
 Xcodeには色々と便利な機能もありますが、それは必要になる都度、説明していくつもりです。
 
 * iOSアプリの紹介  
   Xcodeで実行出来るアプリをいくつか紹介します。ここに挙げたアプリはソースコードが公開されているので、Xcodeから直接起動することが出来ます。  
   [Molecules](http://www.sunsetlakesoftware.com/molecules) [FuelView](http://cocoawithlove.com/2011/06/process-of-writing-ios-application.html)
 * Twitterクライアントの紹介  
-  講座をやるにあたって、目標となるアプリがあった方がモチベーションが上がると思いますので、Twitterクライアントアプリ（OfflineView）を一つ作成しました。この講座ではこのアプリを自作出来るようになることを目標にします。
+  講座をやるにあたって、目標となるアプリがあった方がモチベーションが上がると思いますので、Twitterクライアントアプリ（OfflineView）を一つ作成しました。OfflineViewを自作出来るようになることが本講座の目標です。
   ここではOfflineViewの機能概要を説明します。
 * OfflineViewの主な機能
   * ログインユーザのタイムライン表示
@@ -37,8 +37,16 @@ Xcodeには色々と便利な機能もありますが、それは必要になる
   * サムネイル表示＆Webの先読み
 * Xcodeを使ってサンプルアプリを作成（ハンズオン）  
   実際に手を動かしてアプリを作成してみましょう。
-  * テンプレートから新規にプロジェクトを作成
-  * Storyboardからボタン* ラベルを追加
+  * テンプレートから新規にプロジェクトを作成  
+  以下の手順に沿って作業して下さい  
+  File -> New -> Project -> Tabbed Application  
+  ProductName/Company Identifire -> お好きにどうぞ
+  Device Family -> iPhone, Storyboards/ARC -> ON, UnitTest -> OFF, 保存時にgitをON  
+  Xcodeにプロジェクトが作成されるので、SchemeにiPhone Simulatorを選択し、Runを押下してアプリを起動します
+  * Storyboardからボタン* ラベルを追加  
+  作成したアプリにボタン・ラベルを追加します  
+  MainStoryboard.storyboard -> First View Controller -> View と選択し、Labelを画面にDragします。Textを書き換えて、好きな文言を入力します  
+  アプリを再実行します
   * Segueを使った画面遷移
 
 
