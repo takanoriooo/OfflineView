@@ -31,7 +31,8 @@
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {  
     NSLog(@"## %s", __FUNCTION__);
     
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self.presentingViewController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - view controller

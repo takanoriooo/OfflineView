@@ -71,6 +71,7 @@
  シェイクを有効化
  */
 - (BOOL)canBecomeFirstResponder {
+    LOG_CURRENT_METHOD;
     return YES;
 }
 
@@ -78,7 +79,7 @@
  シェイク終了イベント
  */
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
 
     // タイムラインを取得
     TwitterTimeLineLogic* timeLineLogic = [TwitterTimeLineLogic shareManager];
@@ -91,9 +92,8 @@
  * タイムライン取得終了
  */
 - (void)didSync {
-//    [self.tableView reloadInputViews];
+    LOG_CURRENT_METHOD;
     [self.tableView reloadData];
-//    [self.tableView reloadInputViews];
 }
 
 
@@ -101,6 +101,7 @@
  通信失敗
  */
 - (void)didFailSync {
+    LOG_CURRENT_METHOD;
     
 	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"エラー" 
                                                     message:@"タイムラインの取得に失敗しました。インターネット接続を確認して下さい"
@@ -112,24 +113,24 @@
 #pragma mark - 広告表示処理(iad) 未実装
 
 - (void)bannerViewWillLoadAd:(ADBannerView *)banner __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_5_0) {
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner{
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave{
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     return YES;
 }
 
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner{
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
 }
 
 #pragma mark - WebView delegate
@@ -138,28 +139,29 @@
 //    NSLog(@"## %s", __FUNCTION__);
 //}
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
-//    NSLog(@"## %s url=%@", __FUNCTION__, webView.request.URL.absoluteString);
-    
-    // サムネイル用のWebView以外は無視
-    if(webView.tag != 10) {
-        return;
-    }
-
-    // 次画面で表示するURLを保持
-    self.nextUrl = webView.request.URL.absoluteString;
-    
-    // 前回と同じURLであればキャンセル
-    if([self.beforeUrl isEqualToString:webView.request.URL.absoluteString]) {
-        NSLog(@"cancel");
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(moveNext) object:nil];
-    }
-    
-    // 次画面へ遷移。一つのURLを読み込む際に、webViewDidFinishLoadが複数回実行されるため、
-    // 通信が終了した頃を見計らって遷移する。
-    [self performSelector:@selector(moveNext) withObject:nil afterDelay:3.0];
-}
+//- (void)webViewDidFinishLoad:(UIWebView *)webView {
+//    
+//    LOG_CURRENT_METHOD;
+////    NSLog(@"## %s url=%@", __FUNCTION__, webView.request.URL.absoluteString);
+//    
+//    // サムネイル用のWebView以外は無視
+//    if(webView.tag != 10) {
+//        return;
+//    }
+//
+//    // 次画面で表示するURLを保持
+//    self.nextUrl = webView.request.URL.absoluteString;
+//    
+//    // 前回と同じURLであればキャンセル
+//    if([self.beforeUrl isEqualToString:webView.request.URL.absoluteString]) {
+//        NSLog(@"cancel");
+//        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(moveNext) object:nil];
+//    }
+//    
+//    // 次画面へ遷移。一つのURLを読み込む際に、webViewDidFinishLoadが複数回実行されるため、
+//    // 通信が終了した頃を見計らって遷移する。
+//    [self performSelector:@selector(moveNext) withObject:nil afterDelay:3.0];
+//}
 
 /**
  Web画面へ遷移。遅延実行用
@@ -167,6 +169,8 @@
 -(void)moveNext {
     NSLog(@"## %s url=%@", __FUNCTION__, self.beforeUrl);
     [self performSegueWithIdentifier:SEGUE_WEBVIEW sender:self];
+//    WebViewController* tempVC = [self.storyboard instantiateViewControllerWithIdentifier:@"webvc"];
+//    [self presentModalViewController:tempVC animated:TRUE];
 }
 
 /**
@@ -175,6 +179,7 @@
  */
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
+    LOG_CURRENT_METHOD;
     NSLog(@"## %s error=%@ url=%@", __FUNCTION__, error, webView.request.URL.absoluteString);}
 
 /**
@@ -183,16 +188,22 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
     
-//    NSLog(@"## %s url=%@", __FUNCTION__, [request URL]);
+    LOG_CURRENT_METHOD;
+    NSLog(@"## %s url=%@", __FUNCTION__, [request URL]);
     
     // URLからスキーマを取得
 	NSString* scheme = [[request URL] scheme];
     
     // 空が指定されている場合、文字列を直接読み込んだと見做し、遷移を実行
-	if([scheme compare:@"about"] == NSOrderedSame) return YES;
-    
+	if([scheme compare:@"about"] == NSOrderedSame) {
+        NSLog(@"空が指定されている場合、文字列を直接読み込んだと見做し、遷移を実行 !%@!", scheme);
+        return YES;
+    }    
     // http/https以外が指定されている場合、通信を行わない
-	if([scheme compare:@"http"] != NSOrderedSame && [scheme compare:@"https"] != NSOrderedSame) return NO;
+	if([scheme compare:@"http"] != NSOrderedSame && [scheme compare:@"https"] != NSOrderedSame) {
+        NSLog(@"http/https以外が指定されている場合、通信を行わない");
+        return NO;
+    }
     
     // 接続するURLはあとで判定に使用するため、保持しておく
     self.beforeUrl = [request URL].absoluteString;
@@ -207,10 +218,12 @@
         self.nextUrl = request.URL.absoluteString;
         [self moveNext];
         // 遷移させるとCell内に表示されるため、遷移は無効にする
+        NSLog(@"遷移させるとCell内に表示されるため、遷移は無効にする");
         return NO;
     }
     // フッターViewの画面遷移は有効化。高さゼロのため、アプリ上からは視認出来ない
     else if(webView.tag == TAG_WEBVIEW_FOOTER) {
+        NSLog(@"フッターViewの画面遷移は有効化。高さゼロのため、アプリ上からは視認出来ない");
         return YES;
     }
     
@@ -220,6 +233,7 @@
                                                    delegate:nil 
                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
+    NSLog(@"ここに来るのは想定外");
     return NO;
 }
 
@@ -233,7 +247,7 @@
  */
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // 停止中に引っ張られても何もしない
     if (self.headerView.state == HeaderViewStateStopping) {
@@ -261,7 +275,7 @@
  */
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     //    if (self.tableView.contentOffset.y < PULLDOWN_MARGIN) {
     // 一定以上引っ張られていたら分岐に入る
@@ -269,7 +283,7 @@
         // 状態を更新
         self.headerView.state = HeaderViewStateStopping;
         // ヘッダは表示したまま
-        [self _setHeaderViewHidden:NO animated:YES];
+        [self setHeaderViewHidden:NO animated:YES];
         
         // 更新開始
         TwitterTimeLineLogic* timeLineLogic = [TwitterTimeLineLogic shareManager];
@@ -277,25 +291,26 @@
 //        [timeLineLogic sync:1 max_id:0 since_id:0];
 
         // 条件を満たしたら更新終了メソッドを実行
-        [self performSelector:@selector(_taskFinished) withObject:nil afterDelay:2.0];
+        [self performSelector:@selector(taskFinished) withObject:nil afterDelay:2.0];
     }
 }
 
 /**
  更新処理が終了したら実行される
  */
-- (void)_taskFinished
+- (void)taskFinished
 {
+    LOG_CURRENT_METHOD;
     self.headerView.state = HeaderViewStateHidden;
-    //    [self.headerView setUpdatedDate:[NSDate date]];
-    [self _setHeaderViewHidden:YES animated:YES];
+    [self setHeaderViewHidden:YES animated:YES];
 }
 
 /**
  ヘッダの表示を切り替える
  */
-- (void)_setHeaderViewHidden:(BOOL)hidden animated:(BOOL)animated
+- (void)setHeaderViewHidden:(BOOL)hidden animated:(BOOL)animated
 {
+    LOG_CURRENT_METHOD;
     CGFloat topOffset = 0.0;
     if (hidden) {
         topOffset = -self.headerView.frame.size.height;
@@ -313,8 +328,7 @@
 #pragma mark view controller
 
 -(void)viewDidLoad {
-    //    NSLog(@"## %s", __FUNCTION__);
-    
+    LOG_CURRENT_METHOD;
     // 変数をクリア
     self.beforeUrl = nil;
     
@@ -348,7 +362,7 @@
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     return [[self.fetchedResultsController sections] count];
 }
 
@@ -357,7 +371,7 @@
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
@@ -366,7 +380,7 @@
  Cellの高さを定義。ここで設定しないと、文字が省略される（あいう...のように）
  */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    NSLog(@"## %s start", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // 表示する文字を取得
     TweetStatus* tweetObj = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -393,7 +407,7 @@
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // パフォーマンス向上のため、キャッシュからCellを取得
 	NSString* reuseIdentifier = @"CustomCell";
@@ -414,7 +428,7 @@
  */
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    //    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
 //    if (cell.hidden) {
 //    } else {
@@ -446,7 +460,7 @@
     
     // 日付
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"Y/M/d H:m:s"];  
+    [dateFormatter setDateFormat:@"M/d HH:mm:ss"];  
     NSString *dateString = [dateFormatter stringFromDate:tweetObj.created_at];
     
     UILabel *timeLbl = (UILabel*)[cell viewWithTag:3];
@@ -500,14 +514,14 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     [self.tableView beginUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
@@ -523,7 +537,7 @@
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     UITableView *tableView = self.tableView;
     
     switch(type) {
@@ -552,7 +566,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     [self.tableView endUpdates];
 }
 
@@ -562,7 +576,7 @@
  */
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    //    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // 作成済みであれば、新規には作らない
     if (_fetchedResultsController != nil) {

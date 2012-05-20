@@ -46,7 +46,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         </imageView>
                                         <webView autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" tag="4" contentMode="TopLeft" id="Tpo-0I-GIB" userLabel="Cell Web View">
-                                            <rect key="frame" x="37.5" y="8" width="283" height="33"/>
+                                            <rect key="frame" x="38" y="8" width="283" height="33"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -55,7 +55,7 @@
                                             </connections>
                                         </webView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="krb-K0-pEs">
-                                            <rect key="frame" x="43" y="0.5" width="180" height="13"/>
+                                            <rect key="frame" x="43" y="0.0" width="180" height="13"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
