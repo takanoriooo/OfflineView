@@ -2,8 +2,8 @@
 //  MasterViewController.m
 //  OfflineView
 //
-//  Created by 耕平 照屋 on 12/05/11.
-//  Copyright (c) 2012年 クオリサイトテクノロジーズ株式会社. All rights reserved.
+//  Created by Irie Ryuhei on 12/05/20.
+//  Copyright (c) 2012年 qualysite. All rights reserved.
 //
 
 #import "MasterViewController.h"
@@ -132,14 +132,14 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TweetStatus" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_at" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
