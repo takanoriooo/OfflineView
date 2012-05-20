@@ -37,6 +37,10 @@
 
 #pragma mark - view controller
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
 - (void)viewDidLoad
 {
     NSLog(@"## %s url=%@", __FUNCTION__, self.url);

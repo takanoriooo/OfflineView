@@ -328,6 +328,10 @@
 
 #pragma mark view controller
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
 -(void)viewDidLoad {
     LOG_CURRENT_METHOD;
     // 変数をクリア
