@@ -109,9 +109,13 @@ Twitterクライアントの作成に必要なライブラリの紹介
 
 ### 第11回：Twitterクライアントの作成5（Webページの先読み）
 
-### 第11回：Twitterクライアントの作成6（広告表示（iAd））
+### 第12回：Twitterクライアントの作成6（広告表示（iAd））
 
 ### License
 OfflineView is released under the MIT license:
 
 www.opensource.org/licenses/MIT
+
+Major components:
+
+RestKit:  Apache License, Version 2.0
