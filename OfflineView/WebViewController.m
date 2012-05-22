@@ -19,25 +19,26 @@
 #pragma mark - 本クラスで定義したメソッド
 
 -(IBAction)dissMiss:(id)sender {
+    LOG_CURRENT_METHOD;
     [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - shake
 
 - (BOOL)canBecomeFirstResponder {
+    LOG_CURRENT_METHOD;
     return YES;
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {  
-    NSLog(@"## %s", __FUNCTION__);
-    
-//    [self dismissModalViewControllerAnimated:YES];
+    LOG_CURRENT_METHOD;
     [self.presentingViewController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - view controller
 
 -(void)viewWillAppear:(BOOL)animated {
+    LOG_CURRENT_METHOD;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
@@ -48,9 +49,7 @@
 
     // Tweet画面で選択されたWebを表示。urlはTweet画面で設定されたものを使用。
     // Tweet画面でキャッシュ済みのため、NSURLRequestReturnCacheDataDontLoadを指定
-//    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestReturnCacheDataDontLoad timeoutInterval:60]];
-    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60]];
-//    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10]];
+    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60]];
 }
 
 /**
@@ -59,6 +58,7 @@
  */
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    LOG_CURRENT_METHOD;
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 

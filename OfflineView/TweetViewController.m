@@ -20,6 +20,9 @@
 
 @implementation TweetViewController
 
+// 一度に取得するTweet件数
+#define COUNT_TWEET 20
+
 //// Storyboardで定義した定数
 #define SEGUE_WEBVIEW @"WebViewSegue"
 // TAG - 画面先読みのためにフッタに追加しているWebView
@@ -344,7 +347,7 @@
     // CoreDataにデータがあれば描画を指示
     if([TweetStatus findAll].count > 0) [self didSync];
     // データが１件も無ければ初回起動とみなし、データを取得
-    else [timeLineLogic sync:2 max_id:0 since_id:0];
+    else [timeLineLogic sync:COUNT_TWEET max_id:0 since_id:0];
 }
 
 /**

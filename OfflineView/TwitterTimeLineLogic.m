@@ -49,7 +49,7 @@ static long long syncLastTweetId = 0;
     [requestSearch setSortDescriptors:sortArray];
     
     TweetStatus* lastTweet = [TweetStatus objectWithFetchRequest:requestSearch];
-    syncLastTweetId = [lastTweet.id longLongValue];
+    syncLastTweetId = lastTweet ? [lastTweet.id longLongValue] : 0;
 
     // タイムライン取得実行
     [self sync:COUNT_TWEET max_id:0 since_id:syncLastTweetId];

@@ -217,7 +217,7 @@
 		748AEC7A1568EEF100E7875E = {
 			isa = PBXGroup;
 			children = (
-				748AEC911568EEF100E7875E /* OfflineView */,
+				748AEC911568EEF100E7875E /* Code */,
 				748AEC881568EEF100E7875E /* Frameworks */,
 				748AEC861568EEF100E7875E /* Products */,
 			);
@@ -254,7 +254,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		748AEC911568EEF100E7875E /* OfflineView */ = {
+		748AEC911568EEF100E7875E /* Code */ = {
 			isa = PBXGroup;
 			children = (
 				748AED251568F12A00E7875E /* Controller */,
@@ -269,6 +269,7 @@
 				748AECA01568EEF100E7875E /* OfflineView.xcdatamodeld */,
 				748AEC921568EEF100E7875E /* Supporting Files */,
 			);
+			name = Code;
 			path = OfflineView;
 			sourceTree = "<group>";
 		};
