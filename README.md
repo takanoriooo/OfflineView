@@ -105,11 +105,11 @@ Twitterクライアントの作成に必要なライブラリの紹介
   * GTMの紹介
   * GTMを使ってタイムラインを取得（ハンズオン）
 
-### 第10回：Twitterクライアントの作成4（TwitterAPIの組み込み）
+### 第9回：Twitterクライアントの作成4（TwitterAPIの組み込み）
 
-### 第11回：Twitterクライアントの作成5（Webページの先読み）
+### 第10回：Twitterクライアントの作成5（Webページの先読み）
 
-### 第12回：Twitterクライアントの作成6（広告表示（iAd））
+### 第11回：Twitterクライアントの作成6（広告表示（iAd））
 
 ### License
 OfflineView is released under the MIT license:
