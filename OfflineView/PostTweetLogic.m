@@ -20,7 +20,7 @@ static PostTweetLogic* instance;
  factory
  */
 +(PostTweetLogic*)shareManager {
-    //    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // 作成済みなら返却
     if(instance) return instance;
@@ -33,6 +33,7 @@ static PostTweetLogic* instance;
  Tweet投稿
  */
 -(void)postTweet:(NSString *)text {
+    LOG_CURRENT_METHOD;
     
     // 要求を準備
     NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1/statuses/update.json"];
@@ -58,14 +59,12 @@ static PostTweetLogic* instance;
 // ツイート投稿要求に対する応答
 - (void)postTweetFetcher:(GTMHTTPFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
 {
+    LOG_CURRENT_METHOD;
     if (error != nil) {
         // ツイート投稿取得エラー
         NSLog(@"Fetching statuses/update error: %d", error.code);
         return;
     }
-    
-    // タイムライン更新
-//    [self fetchGetHomeTimeline];
 }
 
 @end

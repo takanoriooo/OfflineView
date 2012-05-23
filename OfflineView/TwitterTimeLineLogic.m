@@ -24,7 +24,6 @@
 static TwitterTimeLineLogic* instance;
 static long long syncFirstTweetId = 0;
 static long long syncLastTweetId = 0;
-//static long long lastTweetId = 0;
 
 @synthesize delegate;
 
@@ -32,7 +31,7 @@ static long long syncLastTweetId = 0;
  factory
  */
 +(TwitterTimeLineLogic*)shareManager {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // 作成済みなら返却
     if(instance) return instance;
@@ -42,6 +41,8 @@ static long long syncLastTweetId = 0;
 }
 
 - (void)syncTl {
+    LOG_CURRENT_METHOD;
+    
     // CoreDataに格納されている、最新のTweetのIDを取得
     NSFetchRequest* requestSearch = [TweetStatus fetchRequest];
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:NO];
@@ -56,7 +57,7 @@ static long long syncLastTweetId = 0;
 }
 
 - (void)sync:(int)count max_id:(long long)max_id since_id:(long long)since_id {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
 
     // 要求を準備
     // 最大取得件数
@@ -95,7 +96,7 @@ static long long syncLastTweetId = 0;
  */
 - (void)homeTimelineFetcher:(GTMHTTPFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
 {
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     if (error != nil) {
         // タイムライン取得エラー
@@ -121,26 +122,13 @@ static long long syncLastTweetId = 0;
         
         // TODO iPad実機で動かすと日付変換に失敗する。シミュレータでは成功
         NSDateFormatter *inputDateFormatter = [[NSDateFormatter alloc] init];
-//        [inputDateFormatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
         [inputDateFormatter setDateFormat:@"E MMM d HH:mm:ss Z y"];
-//        NSDate *created_at = [inputDateFormatter dateFromString:@"Fri May 04 02:50:24 +0000 2012"];
         NSDate *created_at = [inputDateFormatter dateFromString:[self getTweetData:tweetDic key:@"created_at"]];
-//        NSLog(@"tweet date=%@", [self getTweetData:tweetDic key:@"created_at"]);
         
         entity.created_at = created_at;
-//        NSLog(@"tweet date2=%@", entity.created_at);
-//        NSLog(@"tweet date3=%@", created_at);
-        
-        //        NSObject* coordinates = [self getTweetData:tweetDic key:@"coordinates"];
-        //        if(coordinates) {
-        //            NSLog(@"coordinates=%@", [coordinates class]);
-        //            NSLog(@"coordinates=%@", coordinates);
-        //        }
-        //        entity.coordinates = [self getTweetData:tweetDic key:@"coordinates"];
         
         entity.source = [self getTweetData:tweetDic key:@"source"];
         entity.id = [self getTweetData:tweetDic key:@"id"];
-//        NSLog(@"tweet id=%@", entity.id);
         entity.in_reply_to_screen_name = [self getTweetData:tweetDic key:@"in_reply_to_screen_name"];
         entity.id_str = [self getTweetData:tweetDic key:@"id_str"];
         entity.truncated = [self getTweetData:tweetDic key:@"truncated"];
@@ -200,8 +188,7 @@ static long long syncLastTweetId = 0;
  ユーザ情報をTwitterサーバから取得。タイムライン取得とは別スレッドで実行される
  */
 - (void)userFetcher:(GTMHTTPFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error {
-    
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     if (error != nil) {
         // 取得エラー
@@ -311,8 +298,9 @@ static long long syncLastTweetId = 0;
  Dictionaryから値を取得。NSNullであればnilを返す
  */
 -(id)getTweetData:(NSDictionary*)tweetDic key:(NSString*)key {
+    LOG_CURRENT_METHOD;
+    
     id data = [tweetDic valueForKey:key];
-//    NSLog(@"key=%@, value=%@", key, data);
     if([data isEqual:[NSNull null]]) return nil;
     return data;
 }

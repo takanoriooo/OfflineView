@@ -50,7 +50,7 @@ static NSString* const kKeychainAppServiceName = @"tmp23";
  factory
  */
 +(TwitterOAuthLogic*)shareManager {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // 作成済みなら返却
     if(instance) return instance;
@@ -85,7 +85,7 @@ static NSString* const kKeychainAppServiceName = @"tmp23";
  */
 - (void)signIn
 {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     NSURL *requestTokenURL = [NSURL URLWithString:REQUEST_TOKEN_URL];
     NSURL *accessTokenURL = [NSURL URLWithString:ACCESS_TOKEN_URL];
@@ -116,7 +116,7 @@ static NSString* const kKeychainAppServiceName = @"tmp23";
            finishWithAuth:(GTMOAuthAuthentication *)auth
                     error:(NSError *)error
 {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // 認証失敗。オフライン時に実行すると、ここへ入る
     if (error != nil) {

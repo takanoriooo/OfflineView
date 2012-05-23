@@ -25,7 +25,7 @@
  * OAuth認証用ウィンドウを表示
  */
 - (void)presentOAuthView:(UIViewController *)viewController {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     [self presentModalViewController:viewController animated:YES];
 }
 
@@ -33,7 +33,7 @@
  認証終了処理
  */
 - (void)didOAuth:(UIViewController*)oauthViewController {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // 認証用ViewController(oauthViewController)を使用して画面遷移を行う必要があるため、
     // Segueではなく、presentModalViewControllerを自身で実行する。
@@ -54,10 +54,7 @@
  認証失敗後の処理
  */
 -(void)didOAuthFail:(UIViewController *)authViewContoller {
-
-    // ログインウィンドウを閉じる
-//    [authViewContoller dismissModalViewControllerAnimated:YES];
-    
+    LOG_CURRENT_METHOD;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー"
                                                     message:@"認証に失敗しました。インターネット接続を確認して下さい"
                                                    delegate:self
@@ -74,19 +71,19 @@
  ※おそらく、描画が終了後にクローズ処理を実行する必要があるためだと思われる
  */
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     [self dismissModalViewControllerAnimated:TRUE];
 }
 
 #pragma mark - shake
 
 - (BOOL)canBecomeFirstResponder {
+    LOG_CURRENT_METHOD;
     return YES;
 }
 
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {  
-//    NSLog(@"## %s", __FUNCTION__);
-    
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    LOG_CURRENT_METHOD;
     if (event.type == UIEventTypeMotion &&  
         motion == UIEventSubtypeMotionShake) {
 
@@ -100,6 +97,7 @@
 
 - (void)viewDidLoad
 {
+    LOG_CURRENT_METHOD;
     [super viewDidLoad];
     
     // delegateを設定

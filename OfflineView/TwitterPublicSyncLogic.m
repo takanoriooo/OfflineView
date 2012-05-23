@@ -25,7 +25,8 @@ static TwitterPublicSyncLogic* instance;
  factory
  */
 +(TwitterPublicSyncLogic*)shareManager {
-//    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
+    
     // 作成済みなら返却
     if(instance) return instance;
     
@@ -57,6 +58,7 @@ static TwitterPublicSyncLogic* instance;
  TwitterのJSONデータをRestKitを使って直接CoreDataへ挿入する場合の設定処理。
  */
 + (void)setInit {
+    LOG_CURRENT_METHOD;
     
     RKObjectManager* objectManager = [RKObjectManager sharedManager];
     
@@ -131,7 +133,7 @@ static TwitterPublicSyncLogic* instance;
  TwitterサーバからTweetを取得
  */
 -(void)sync {
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
     // 既存データを削除
     NSArray* users = [TweetUser findAll];
@@ -148,7 +150,7 @@ static TwitterPublicSyncLogic* instance;
  Tweetの取得成功時の処理。
  */
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
     
 	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdatedAt"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
@@ -159,7 +161,8 @@ static TwitterPublicSyncLogic* instance;
  Tweetの取得失敗時の処理。
  */
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    NSLog(@"## %s", __FUNCTION__);
+    LOG_CURRENT_METHOD;
+    
 	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" 
                                                     message:[error localizedDescription] 
                                                    delegate:nil 

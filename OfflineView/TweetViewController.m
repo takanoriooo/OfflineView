@@ -49,25 +49,6 @@
 
 #pragma mark - tableview delegate
 
-///**
-// Cellの表示直前に呼ばれる。Cellの背景色を設定する
-// */
-//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSLog(@"## %s", __FUNCTION__);
-//    if (cell.tag != TAG_CELL_OLD) cell.backgroundColor = [UIColor lightGrayColor];
-//}
-//-(void)viewDidAppear:(BOOL)animated {
-//    
-//    NSArray* visibleCells = self.tableView.visibleCells;
-//    for (UITableViewCell* cell in visibleCells) {
-//        UIWebView *tweet = (UIWebView*)[cell viewWithTag:4];
-//        [tweet loadHTMLString:@"aa" baseURL:nil];
-////        [cell reloadInputViews];
-////        NSLog(@"ZZ %@", cell);
-////        cell.hidden = FALSE;
-//    }
-//}
-
 #pragma mark - shake
 
 /**
@@ -98,7 +79,6 @@
     LOG_CURRENT_METHOD;
     [self.tableView reloadData];
 }
-
 
 /**
  通信失敗
@@ -138,43 +118,12 @@
 
 #pragma mark - WebView delegate
 
-//- (void)webViewDidStartLoad:(UIWebView *)webView {
-//    NSLog(@"## %s", __FUNCTION__);
-//}
-
-//- (void)webViewDidFinishLoad:(UIWebView *)webView {
-//    
-//    LOG_CURRENT_METHOD;
-////    NSLog(@"## %s url=%@", __FUNCTION__, webView.request.URL.absoluteString);
-//    
-//    // サムネイル用のWebView以外は無視
-//    if(webView.tag != 10) {
-//        return;
-//    }
-//
-//    // 次画面で表示するURLを保持
-//    self.nextUrl = webView.request.URL.absoluteString;
-//    
-//    // 前回と同じURLであればキャンセル
-//    if([self.beforeUrl isEqualToString:webView.request.URL.absoluteString]) {
-//        NSLog(@"cancel");
-//        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(moveNext) object:nil];
-//    }
-//    
-//    // 次画面へ遷移。一つのURLを読み込む際に、webViewDidFinishLoadが複数回実行されるため、
-//    // 通信が終了した頃を見計らって遷移する。
-//    [self performSelector:@selector(moveNext) withObject:nil afterDelay:3.0];
-//}
-
 /**
  Web画面へ遷移。遅延実行用
  */
 -(void)moveNext {
     NSLog(@"## %s url=%@", __FUNCTION__, self.beforeUrl);
     [self performSegueWithIdentifier:SEGUE_WEBVIEW sender:self];
-//    WebViewController* tempVC = [self.storyboard instantiateViewControllerWithIdentifier:@"webvc"];
-//    [self presentModalViewController:tempVC animated:TRUE];
-//    [self.presentingViewController presentingViewController]
 }
 
 /**
@@ -182,8 +131,6 @@
  文字列の表示は出来ているので、エラーは無視する
  */
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
-    LOG_CURRENT_METHOD;
     NSLog(@"## %s error=%@ url=%@", __FUNCTION__, error, webView.request.URL.absoluteString);}
 
 /**
@@ -215,9 +162,6 @@
     // TableViewCell内のwebviewであれば、ダミーWebView(フッタのWebView)へURLを読み込み、
     // キャッシュ化しておく
     if(webView.tag == TAG_WEBVIEW_CELL) {
-        // フッタのWebViewを取得
-//        UIWebView *fotterView = (UIWebView*)[self.view viewWithTag:TAG_WEBVIEW_FOOTER];
-//        [fotterView loadRequest:request];
         
         self.nextUrl = request.URL.absoluteString;
         [self moveNext];
@@ -280,8 +224,7 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     LOG_CURRENT_METHOD;
-    
-    //    if (self.tableView.contentOffset.y < PULLDOWN_MARGIN) {
+
     // 一定以上引っ張られていたら分岐に入る
     if (self.headerView.state == HeaderViewStateOveredThreshold) {
         // 状態を更新
@@ -292,7 +235,6 @@
         // 更新開始
         TwitterTimeLineLogic* timeLineLogic = [TwitterTimeLineLogic shareManager];
         [timeLineLogic syncTl];
-//        [timeLineLogic sync:1 max_id:0 since_id:0];
 
         // 条件を満たしたら更新終了メソッドを実行
         [self performSelector:@selector(taskFinished) withObject:nil afterDelay:2.0];
@@ -422,9 +364,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
     // 未設定であれば、処理を行う
-//    if (cell.hidden) {
-        [self configureCell:cell atIndexPath:indexPath];
-//    }
+    [self configureCell:cell atIndexPath:indexPath];
     [cell reloadInputViews];
     
     // データを設定
@@ -437,13 +377,6 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     LOG_CURRENT_METHOD;
-    
-//    if (cell.hidden) {
-//    } else {
-//        cell.hidden = FALSE;
-//    }
-    
-//    cell.hidden = TRUE;
     cell.hidden = FALSE;
     
     TweetStatus* tweetObj = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -486,35 +419,31 @@
     UIWebView* sambnailWebView = (UIWebView*)[cell viewWithTag:10];
     sambnailWebView.hidden = TRUE;
     
-    // URL読み込みがまだ行われていない場合（hidden=false）のみ、読み込み処理を実行
-//    if (sambnailWebView.hidden) {
-        
-        NSError *error = NULL;
-        NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
-        NSArray* matches = [detector matchesInString:tweetObj.text 
-                                             options:0 range:NSMakeRange(0, [tweetObj.text length])];
-        // URL件数分ループ ※実際は１件のみ対応
-        for (int i=0; i<matches.count; i++) {
-            NSTextCheckingResult* match = [matches objectAtIndex:i];
-            if ([match resultType] == NSTextCheckingTypeLink) {
-                
-                sambnailWebView.hidden = false;
-                [sambnailWebView scalesPageToFit];
-                
-                NSURL* url = [match URL];
-                sambnailWebView.frame = CGRectMake(
-                                                   sambnailWebView.frame.origin.x,
-                                                   cellHeight - HEIGHT_SAMBNAIL,
-                                                   sambnailWebView.frame.size.width,
-                                                   sambnailWebView.frame.size.height);
-                
-                NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
-                [sambnailWebView loadRequest:request];
-//                NSLog(@"サムネイルロード開始 x=%f y=%f url=%@ mss=%@", sambnailWebView.frame.origin.x, sambnailWebView.frame.origin.y, request.URL.absoluteString, tweetMss);
-                break;
-            } 
-        }
-    //    }
+    // 読み込み処理を実行
+    NSError *error = NULL;
+    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+    NSArray* matches = [detector matchesInString:tweetObj.text 
+                                         options:0 range:NSMakeRange(0, [tweetObj.text length])];
+    // URL件数分ループ ※実際は１件のみ対応
+    for (int i=0; i<matches.count; i++) {
+        NSTextCheckingResult* match = [matches objectAtIndex:i];
+        if ([match resultType] == NSTextCheckingTypeLink) {
+            
+            sambnailWebView.hidden = false;
+            [sambnailWebView scalesPageToFit];
+            
+            NSURL* url = [match URL];
+            sambnailWebView.frame = CGRectMake(
+                                               sambnailWebView.frame.origin.x,
+                                               cellHeight - HEIGHT_SAMBNAIL,
+                                               sambnailWebView.frame.size.width,
+                                               sambnailWebView.frame.size.height);
+            
+            NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
+            [sambnailWebView loadRequest:request];
+            break;
+        } 
+    }
     [cell reloadInputViews];
 }
 

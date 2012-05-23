@@ -30,7 +30,11 @@
     return YES;
 }
 
+<<<<<<< HEAD
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {  
+=======
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+>>>>>>> 不要なコメントを削除
     LOG_CURRENT_METHOD;
     [self.presentingViewController dismissModalViewControllerAnimated:YES];
 }
