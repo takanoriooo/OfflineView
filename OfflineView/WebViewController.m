@@ -30,11 +30,7 @@
     return YES;
 }
 
-<<<<<<< HEAD
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {  
-=======
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
->>>>>>> 不要なコメントを削除
     LOG_CURRENT_METHOD;
     [self.presentingViewController dismissModalViewControllerAnimated:YES];
 }
@@ -48,7 +44,8 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"## %s url=%@", __FUNCTION__, self.url);
+    LOG_CURRENT_METHOD;
+//    NSLog(@"## %s url=%@", __FUNCTION__, self.url);
     [super viewDidLoad];
 
     // Tweet画面で選択されたWebを表示。urlはTweet画面で設定されたものを使用。
