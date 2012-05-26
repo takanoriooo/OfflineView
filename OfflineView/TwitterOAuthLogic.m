@@ -41,7 +41,7 @@ static int const TAG_ALERT = 1;
 /**
  ログイン情報を保持するKeyチェーンのキー
  */
-static NSString* const kKeychainAppServiceName = @"tmp23";
+static NSString* const kKeychainAppServiceName = @"tmp25";
 
 @synthesize delegate;
 @synthesize auth = auth_;

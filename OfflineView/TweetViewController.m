@@ -122,6 +122,7 @@
  Web画面へ遷移。遅延実行用
  */
 -(void)moveNext {
+    LOG_CURRENT_METHOD;
     NSLog(@"## %s url=%@", __FUNCTION__, self.beforeUrl);
     [self performSegueWithIdentifier:SEGUE_WEBVIEW sender:self];
 }
@@ -131,7 +132,8 @@
  文字列の表示は出来ているので、エラーは無視する
  */
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    NSLog(@"## %s error=%@ url=%@", __FUNCTION__, error, webView.request.URL.absoluteString);}
+    NSLog(@"## %s error=%@ url=%@", __FUNCTION__, error, webView.request.URL.absoluteString);
+}
 
 /**
  UIWebViewにURLを読み込んだ際に実行される。外部接続した際のみでなく、文字列を読み込んだ際にも実行される
@@ -140,7 +142,7 @@
  navigationType:(UIWebViewNavigationType)navigationType {
     
     LOG_CURRENT_METHOD;
-    NSLog(@"## %s url=%@", __FUNCTION__, [request URL]);
+//    NSLog(@"## %s url=%@", __FUNCTION__, [request URL]);
     
     // URLからスキーマを取得
 	NSString* scheme = [[request URL] scheme];
@@ -168,11 +170,6 @@
         // 遷移させるとCell内に表示されるため、遷移は無効にする
         NSLog(@"遷移させるとCell内に表示されるため、遷移は無効にする");
         return NO;
-    }
-    // フッターViewの画面遷移は有効化。高さゼロのため、アプリ上からは視認出来ない
-    else if(webView.tag == TAG_WEBVIEW_FOOTER) {
-        NSLog(@"フッターViewの画面遷移は有効化。高さゼロのため、アプリ上からは視認出来ない");
-        return YES;
     }
     
     // ここに来るのは想定外
